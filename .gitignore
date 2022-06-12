@@ -1,0 +1,7 @@
+# IDE Settings
+.idea
+*.iml
+
+# Build/Run artifacts
+/cmd/analyze
+/cmd/sample_data/*.txt
