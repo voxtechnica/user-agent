@@ -27,34 +27,34 @@ those groupings.
 ## Installation
 
 ```bash
-go get github.com/voxtechnica/user-agent/ua
+go get github.com/voxtechnica/user-agent
 ```
 
 ## Usage
 
-Use `ua.Parse(header)` to create a `UserAgent`, as illustrated below.
+Use `user_agent.Parse(header)` to create a `UserAgent`, as illustrated below.
 
 ```go
 header := "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36"
-userAgent := ua.Parse(header)
-fmt.Println(userAgent.String()) // Browser Chrome 101.0 Desktop Windows 10.0
+ua := user_agent.Parse(header)
+fmt.Println(ua.String()) // Browser Chrome 101.0 Desktop Windows 10.0
 ```
 
 ## Performance
 
-The UserAgent parser is pretty fast. It's based on `strings.Contains` instead of using regular expressions.
+The User-Agent parser is pretty fast. It's based on `strings.Contains` instead of using regular expressions.
 It takes 3-4 microseconds to parse a User-Agent header, as indicated in the example benchmark results below.
 
 ```text
 go test -bench=. -benchmem
 goos: linux
 goarch: amd64
-pkg: github.com/voxtechnica/user-agent/ua
+pkg: github.com/voxtechnica/user-agent
 cpu: Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz
-BenchmarkParse/Parse-Googlebot-12   423211   2645 ns/op    835 B/op   12 allocs/op
-BenchmarkParse/Parse-Chrome-12      358167   3269 ns/op   1589 B/op   15 allocs/op
-BenchmarkParse/Parse-Firefox-12     378270   3035 ns/op   1200 B/op   16 allocs/op
-BenchmarkParse/Parse-Safari-12      256557   4257 ns/op   2032 B/op   19 allocs/op
+BenchmarkParse/Parse-Googlebot-12   420231   2684 ns/op    835 B/op   12 allocs/op
+BenchmarkParse/Parse-Chrome-12      332326   3270 ns/op   1589 B/op   15 allocs/op
+BenchmarkParse/Parse-Firefox-12     373551   2997 ns/op   1200 B/op   16 allocs/op
+BenchmarkParse/Parse-Safari-12      275498   4242 ns/op   2032 B/op   19 allocs/op
 PASS
-ok    github.com/voxtechnica/user-agent/ua    4.681s
+ok    github.com/voxtechnica/user-agent    4.654s
 ```

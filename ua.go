@@ -1,4 +1,4 @@
-package ua
+package user_agent
 
 import "strings"
 
@@ -80,8 +80,8 @@ type match struct {
 // UserAgent provides basic information about the user, extracted from an HTTP User-Agent request header.
 // For more on User-Agent strings, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent
 type UserAgent struct {
-	// UserAgent is the provided User-Agent request header
-	UserAgent string `json:"userAgent"`
+	// Header is the provided User-Agent request header
+	Header string `json:"header"`
 
 	// Fields contains parsed/cleaned segments of the User-Agent request header, used for analysis
 	Fields []string `json:"fields"`
@@ -136,11 +136,11 @@ func (ua UserAgent) String() string {
 // returning a UserAgent. Note that the URL will be empty if not provided. Other fields, however, will be set to
 // "Other" if the relevant information is not provided, or if the determination is inconclusive.
 func Parse(userAgent string) UserAgent {
-	ua := UserAgent{UserAgent: unquote(userAgent)}
-	ua.Fields = parseFields(ua.UserAgent)
+	ua := UserAgent{Header: unquote(userAgent)}
+	ua.Fields = parseFields(ua.Header)
 	cleaned := strings.Join(ua.Fields, " ")
 	// A URL always indicates a Bot
-	if strings.Contains(ua.UserAgent, "://") {
+	if strings.Contains(ua.Header, "://") {
 		ua.ClientType = "Bot"
 		ua.URL = botURL(ua.Fields)
 	}

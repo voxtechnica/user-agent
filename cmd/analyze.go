@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/voxtechnica/user-agent/ua"
+	"github.com/voxtechnica/user-agent"
 	"log"
 	"os"
 	"sort"
@@ -56,7 +56,7 @@ func main() {
 		uaStringCount += len(uac.StringCounts)
 		for s, c := range uac.StringCounts {
 			uaCount += c
-			userAgent := ua.Parse(s)
+			userAgent := user_agent.Parse(s)
 			ctCount := clientTypeCounts[userAgent.ClientType]
 			clientTypeCounts[userAgent.ClientType] = ctCount + c
 			cnCount := clientNameCounts[userAgent.ClientName]
@@ -71,7 +71,7 @@ func main() {
 			}
 			cleaned := strings.Join(userAgent.Fields, " ")
 			parsed := userAgent.String()
-			uas := fmt.Sprintf("%s\n%s\t(%d occurrences)\n%s\n\n", userAgent.UserAgent, cleaned, c, parsed)
+			uas := fmt.Sprintf("%s\n%s\t(%d occurrences)\n%s\n\n", userAgent.Header, cleaned, c, parsed)
 			_, err = output.WriteString(uas)
 			if err != nil {
 				log.Printf("error writing to file %s: %v", output.Name(), err)

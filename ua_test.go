@@ -1,4 +1,4 @@
-package ua
+package user_agent
 
 import (
 	"testing"
