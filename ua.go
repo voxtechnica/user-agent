@@ -92,7 +92,7 @@ type UserAgent struct {
 	// ClientName indicates the application name (Chrome, Googlebot, Edge, etc.)
 	ClientName string `json:"clientName"`
 
-	// ClientVersion indicates the extractVersion of the application, if provided
+	// ClientVersion indicates the version of the application, if provided
 	ClientVersion string `json:"clientVersion"`
 
 	// DeviceType indicates the general device category (Desktop, Mobile, Tablet, Other)
@@ -133,8 +133,8 @@ func (ua UserAgent) String() string {
 }
 
 // Parse extracts client, device, and operating system information from the User-Agent request header provided,
-// returning a UserAgent. Note that the URL will be empty if not provided. Other fields, however, will be set to
-// "Other" if the relevant information is not provided, or if the determination is inconclusive.
+// returning a UserAgent. Note that the URL and versions will be empty if not provided. Other fields, however,
+// will be set to "Other" if the relevant information is not provided, or if the determination is inconclusive.
 func Parse(userAgent string) UserAgent {
 	ua := UserAgent{Header: unquote(userAgent)}
 	ua.Fields = parseFields(ua.Header)
