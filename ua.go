@@ -81,31 +81,31 @@ type match struct {
 // For more on User-Agent strings, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent
 type UserAgent struct {
 	// Header is the provided User-Agent request header
-	Header string `json:"header"`
+	Header string `json:"header,omitempty"`
 
 	// Fields contains parsed/cleaned segments of the User-Agent request header, used for analysis
-	Fields []string `json:"fields"`
+	Fields []string `json:"fields,omitempty"`
 
 	// ClientType indicates the application category (App, Bot, Browser, or Other)
-	ClientType string `json:"clientType"`
+	ClientType string `json:"clientType,omitempty"`
 
 	// ClientName indicates the application name (Chrome, Googlebot, Edge, etc.)
-	ClientName string `json:"clientName"`
+	ClientName string `json:"clientName,omitempty"`
 
 	// ClientVersion indicates the version of the application, if provided
-	ClientVersion string `json:"clientVersion"`
+	ClientVersion string `json:"clientVersion,omitempty"`
 
 	// DeviceType indicates the general device category (Desktop, Mobile, Tablet, Other)
-	DeviceType string `json:"deviceType"`
+	DeviceType string `json:"deviceType,omitempty"`
 
 	// OSName indicates the operating system running on the device (Android, Linux, iOS, macOS, Windows, etc.)
-	OSName string `json:"osName"`
+	OSName string `json:"osName,omitempty"`
 
 	// OSVersion indicates the operating system version, if available
-	OSVersion string `json:"osVersion"`
+	OSVersion string `json:"osVersion,omitempty"`
 
 	// URL indicates the URL provided, typically for information about a bot/crawler.
-	URL string `json:"url"`
+	URL string `json:"url,omitempty"`
 }
 
 // String supports the Stringer interface, providing an abbreviated user agent string.

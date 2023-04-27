@@ -1,4 +1,5 @@
 # IDE Settings
+.vscode
 .idea
 *.iml
 
